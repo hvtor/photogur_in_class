@@ -1,8 +1,11 @@
-<h1>Hello</h1>
+<h1>Pictures</h1>
 
-<%- @pictures.each do |picture| %>
-  <p><%= picture %></p>
+<% @pictures.each do |picture| %>
+  <p>
+    <img src="<%= picture %>">
+  </p>
 <% end %>
+
 
 
 <p><%= "hello from ruby" %></p>
