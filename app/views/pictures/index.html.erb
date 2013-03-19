@@ -1,14 +1,8 @@
 <h1>Pictures</h1>
 
 <% @pictures.each do |picture| %>
-  <p>
-    <img src="<%= picture %>">
-  </p>
+  <h2><%= picture[:title] %></h2>
+  <p><%= picture[:artist] %></p>
+  <img src="<%= picture[:url] %>">
 <% end %>
 
-
-
-<p><%= "hello from ruby" %></p>
-<p><%= 1 + 1 %></p>
-
-<%= @greeting.upcase %>

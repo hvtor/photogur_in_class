@@ -1,8 +1,14 @@
 class PicturesController < ApplicationController# NOT: ActionController::Base
+  before_filter :load_pictures
 
   def index
-    @greeting = "Hello World"
+  end
 
+  def show
+    @picture = @pictures[params[:id].to_i]
+  end
+
+  def load_pictures
     @pictures = [
       {
         :title  => "The old church on the coast of White sea",
@@ -20,6 +26,7 @@ class PicturesController < ApplicationController# NOT: ActionController::Base
         :url    => "http://monicao.s3.amazonaws.com/bitmaker/girl.jpg"
       }
     ]
-    @title = "This is my title"
   end
+
+
 end
