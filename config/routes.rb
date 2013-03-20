@@ -1,7 +1,17 @@
 PhotogurInClass::Application.routes.draw do
 
+  # ORDER MATTERS! Rails matches routes in order.
+  # Matches /pictures
   get 'pictures' => 'pictures#index'
 
+  # Matches /pictures/SOMEID/edit
+  get  'pictures/:id/edit' => 'pictures#edit'
+  post 'pictures/:id'      => 'pictures#update'
+
+  # Matches /pictures/SOMEID - don't do this
+  # get 'pictures/:id' => 'pictures#show' # bad place
+
+  # Matches /pictures/new
   get 'pictures/new' => 'pictures#new'
   post 'pictures' => 'pictures#create'
 
