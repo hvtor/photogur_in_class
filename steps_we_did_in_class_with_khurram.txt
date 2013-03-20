@@ -1,0 +1,28 @@
+Steps we did in class with Khurram
+------------
+
+Created/modified a method called "create" in the PicturesController
+What did I do in there?
+  @picture = Picture.new
+Set the 3 parameters/attributes of the @picture
+  @picture.title = params[:title]
+  ...and the other 2 
+SAVE!!!
+  success = @picture.save
+Once the picture is saved successfully, redirected to '/pictures'
+
+We removed load_pictures...
+In the index action where I need all the pictures, I load them from the DB (instead of hard coding them)
+  @pictures = Picture.all
+This returns a collection (Array) of pictures (not hashes)!
+
+Change index.html.erb so that
+picture[:title] 
+turned into
+picture.title
+WHY? 
+Because picture is not a hash, it's a Picture instance
+
+
+
+
