@@ -8,7 +8,7 @@ class PicturesController < ApplicationController# NOT: ActionController::Base
     # params = {
     #   :id => "5"
     # }
-    @picture = P.find params[:id]
+    @picture = Picture.find params[:id]
   end
 
   def new
