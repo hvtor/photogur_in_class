@@ -12,6 +12,7 @@ class PicturesController < ApplicationController# NOT: ActionController::Base
   end
 
   def new
+    @picture = Picture.new
   end
 
   def create
@@ -22,16 +23,15 @@ class PicturesController < ApplicationController# NOT: ActionController::Base
     # }
 
     # Solution 1
-    @picture = Picture.new
-    @picture.url = params[:url]
-    @picture.title = params[:title]
-    @picture.artist = params[:artist]
-    success = @picture.save
+    # @picture = Picture.new
+    # @picture.url = params[:url]
+    # @picture.title = params[:title]
+    # @picture.artist = params[:artist]
 
     # Solution2 - needs attr_accessible on the model
     # success = @picture.create(:title => params[:title], :url => params[:url], :artist => params[:artist])
 
-    if success
+    if Picture.create(params[:picture])
       redirect_to '/pictures' #pictures_path
     end
     #render :text => "Saving a picture. Url: #{params[:url]}, Title: #{params[:title]}, Artist: #{params[:artist]}"

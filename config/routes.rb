@@ -1,23 +1,26 @@
 PhotogurInClass::Application.routes.draw do
+  root :to => 'pictures#index'
 
-  # ORDER MATTERS! Rails matches routes in order.
-  # Matches /pictures
-  get 'pictures' => 'pictures#index'
+  resources :pictures
 
-  # Matches /pictures/SOMEID/edit
-  get  'pictures/:id/edit' => 'pictures#edit'
-  post 'pictures/:id'      => 'pictures#update'
+  # # ORDER MATTERS! Rails matches routes in order.
+  # # Matches /pictures
+  # get 'pictures' => 'pictures#index'
+  
+  # # Matches /pictures/SOMEID/edit
+  # get  'pictures/:id/edit' => 'pictures#edit'
+  # post 'pictures/:id'      => 'pictures#update'
 
-  # Matches /pictures/SOMEID - don't do this
-  # get 'pictures/:id' => 'pictures#show' # bad place
+  # # Matches /pictures/SOMEID - don't do this
+  # # get 'pictures/:id' => 'pictures#show' # bad place
 
-  # Matches /pictures/new
-  get 'pictures/new' => 'pictures#new'
-  post 'pictures' => 'pictures#create'
+  # # Matches /pictures/new
+  # get 'pictures/new' => 'pictures#new'
+  # post 'pictures' => 'pictures#create'
 
-  get 'pictures/:id' => 'pictures#show'
-  # get 'pictures/2' => 'pictures#show2'
-  # get 'pictures/3' => 'pictures#show3'
+  # get 'pictures/:id' => 'pictures#show'
+  # # get 'pictures/2' => 'pictures#show2'
+  # # get 'pictures/3' => 'pictures#show3'
 
 
   # The priority is based upon order of creation:
