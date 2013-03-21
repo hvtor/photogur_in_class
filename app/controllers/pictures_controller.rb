@@ -31,7 +31,8 @@ class PicturesController < ApplicationController# NOT: ActionController::Base
     # Solution2 - needs attr_accessible on the model
     # success = @picture.create(:title => params[:title], :url => params[:url], :artist => params[:artist])
 
-    if Picture.create(params[:picture])
+    @picture = Picture.new(params[:picture])
+    if @picture.save
       redirect_to '/pictures' #pictures_path
     end
     #render :text => "Saving a picture. Url: #{params[:url]}, Title: #{params[:title]}, Artist: #{params[:artist]}"
