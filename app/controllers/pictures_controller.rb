@@ -34,7 +34,7 @@ class PicturesController < ApplicationController# NOT: ActionController::Base
     @picture = Picture.new(params[:picture])
     # Create doesn't return a boolean, always returns an instance of a picture.
     if @picture.save # returns true or false 
-      redirect_to '/pictures' #pictures_path
+      redirect_to pictures_path
     end
     #render :text => "Saving a picture. Url: #{params[:url]}, Title: #{params[:title]}, Artist: #{params[:artist]}"
   end
@@ -68,9 +68,17 @@ class PicturesController < ApplicationController# NOT: ActionController::Base
     # })
 
     if @picture.update_attributes(params[:picture]) # Why?
-      redirect_to "/pictures/#{@picture.id}"
+
+      # redirect_to "/pictures/#{@picture.id}"
+      # redirect_to picture_path(@picture.id)
+      # redirect_to picture_path(@picture)
+      redirect_to @picture
+      # named routes are convenience methods created
+      # by ruby to help us navigate the application
     else
       # do something else
+      # redirect_to "/pictures" 
+      redirect_to pictures_path
     end
   end
 
