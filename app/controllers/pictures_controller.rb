@@ -32,7 +32,8 @@ class PicturesController < ApplicationController# NOT: ActionController::Base
     # success = @picture.create(:title => params[:title], :url => params[:url], :artist => params[:artist])
 
     @picture = Picture.new(params[:picture])
-    if @picture.save
+    # Create doesn't return a boolean, always returns an instance of a picture.
+    if @picture.save # returns true or false 
       redirect_to '/pictures' #pictures_path
     end
     #render :text => "Saving a picture. Url: #{params[:url]}, Title: #{params[:title]}, Artist: #{params[:artist]}"
@@ -44,37 +45,32 @@ class PicturesController < ApplicationController# NOT: ActionController::Base
 
 
   def update
+    # Example params looks like this:
+    # params = {
+    #   :id => "4",
+    #   :picture => {
+    #     :title => "some title here ",
+    #     :url => "http://some-url-here.com/",
+    #     :artist => "Artist name"
+    #   }
+    # }
+
     # get the picture I want to update
     @picture = Picture.find(params[:id])
 
-    # to get the new data for this picture use the params Hash
-    # params looks like this
-    # {:id => 1, :title => "My new title", :artist => "Zoe", :url => "http://theurl.com"}
-    # Solution 1
-    success = @picture.update_attributes(
-      :title  => params[:title], 
-      :artist => params[:artist], 
-      :url    => params[:url]
-    )
+    # The update_attributes below is passing in a hash
+    # The hash is nicely put together by Rails thanks to form_for
+    # This is what is happening on line 70 below.
+    # @picture.update_attributes({
+    #   :title => "!!! ",
+    #   :name => "Khurram",
+    #   :url => "...."
+    # })
 
-    # # Solution 2
-
-    # @picture.update_attribute(:url, params[:url])
-    # @picture.update_attribute(:title, params[:title])
-    # @picture.update_attribute(:artist, params[:artist])
-
-    # # Solution 3
-    # @picture.url    = params[:url]
-    # @picture.title  = params[:title]
-    # @picture.artist = params[:artist]
-    # success = @picture.save
-
-
-    if success
-      # TODO: redirect to the picture, so I can see my changes
+    if @picture.update_attributes(params[:picture]) # Why?
       redirect_to "/pictures/#{@picture.id}"
     else
-      redirect_to '/pictures'
+      # do something else
     end
   end
 
