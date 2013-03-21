@@ -6,8 +6,14 @@
 
 <% @pictures.each do |picture| %>
   <h2><%= picture.title %></h2>
-  <a href="<%= edit_picture_path(picture) %>">Edit</a>
+  <%= button_to "Edit", edit_picture_path(picture), :method => :get%>
+  <!-- <a href="<%= edit_picture_path(picture) %>">Edit</a> -->
   <p><%= picture.artist %></p>
-  <a href="<%= picture_path(picture)%>"><img src="<%= picture.url %>"></a>
+  <!-- <a href="<%= picture_path(picture)%>"> -->
+    <!-- <img src="<%= picture.url %>"> -->
+  <!-- </a> -->
+  <%= link_to picture_path(picture) do %>
+    <img src="<%= picture.url%>">
+  <% end %>
 <% end %>
 
