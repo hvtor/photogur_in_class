@@ -35,8 +35,12 @@ class PicturesController < ApplicationController# NOT: ActionController::Base
     # Create doesn't return a boolean, always returns an instance of a picture.
     if @picture.save # returns true or false 
       redirect_to pictures_path
+    else
+      # There was an error on the form
+      flash.now[:error] = "Could not save the picture. Please try again."
+      render :new
+      # redirect_to new_picture_path  # ---> Loses the data.
     end
-    #render :text => "Saving a picture. Url: #{params[:url]}, Title: #{params[:title]}, Artist: #{params[:artist]}"
   end
 
   def edit

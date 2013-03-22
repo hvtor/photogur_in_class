@@ -3,5 +3,6 @@ class Picture < ActiveRecord::Base
   attr_accessible :title, :artist, :url
   # Don't confuse this with attr_accessor
 
-  validate :url, :presence => true
+  validates :title, :presence => true
+  validates :url,   :presence => true
 end

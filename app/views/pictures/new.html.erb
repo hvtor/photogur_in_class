@@ -1,4 +1,8 @@
 <h1>Add a picture</h1>
+
+<div class="errors">
+  <%= flash[:error] %>
+</div>
 <!--
   First version, plain html:
  <form action="/pictures" method="POST"> 
@@ -12,11 +16,18 @@
   <p>
     <label>Title</label><br>
     <!-- <input type="text" name="title"/> -->
+    <% if @picture.errors.messages[:title] %>
+      <%= @picture.errors.messages[:title][0] %>
+    <% end %>
+
+    <!-- <p class="error">can't be blank</p> -->
     <%= f.text_field "title" %>
   </p>
   <p>
     <label>URL</label><br>
+    <!-- <p class="error">can't be blank</p> -->
     <!-- <input type="text" name="url"/> -->
+    <%= @picture.errors[:url].join(" ")%>
     <%= f.text_field "url" %>
   </p>
   <p>
